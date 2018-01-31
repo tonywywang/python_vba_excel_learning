@@ -1,4 +1,5 @@
-# python_vba_excel_learning
+
+7# python_vba_excel_learning
 Started to learn python and vba for excel data processing
 # HOWTO setup python develop environment on windows 10
 1) Download Python-2.7.14 and Python Python-3.6.4 from https://www.python.org/downloads/
@@ -36,3 +37,22 @@ Started to learn python and vba for excel data processing
        Python 3.6.4
 
      - (python36env) E:\python36env\Scripts>deactivate
+7) Install ipython and jupyter notebook in virtual env
+     
+     Python 2:
+     - E:\python27env\Scripts>activate
+     - pip install ipython
+     - pip install jupyter
+     - pip install numpy
+     - pip install matplotlib
+     - pip install pandas
+     To start notebook: jupyter notebook
+     
+     Python 3:
+     - E:\python36env\Scripts>activate
+     - pip install ipython
+     - pip install jupyter
+     - pip install numpy
+     - pip install matplotlib
+     - pip install pandas
+     To start notebook: jupyter notebook
