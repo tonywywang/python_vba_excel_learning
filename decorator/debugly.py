@@ -14,3 +14,11 @@ def debug(func = None, *, prefix = ''):
         print(msg)
         return func(*args, **kwargs)
     return wrapper
+
+def debugmethods(cls):
+    #cls is a class
+    for key, val in vars(cls).items():
+        if callable(val):
+            setattr(cls, key, debug(val))
+
+    return cls
