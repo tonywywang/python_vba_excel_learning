@@ -1,7 +1,7 @@
 #example.py
 from debugly import debug
 
-@debug
+@debug(prefix='[Sky Debug]')
 def add(x,y):
     return x + y
 
