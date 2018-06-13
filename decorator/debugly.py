@@ -1,14 +1,16 @@
 #debugly.py
 
-from functools import wraps
+from functools import wraps, partial
 
-def debug(prefix = ''):
-    def decorator(func):
-        msg = prefix + func.__qualname__
+def debug(func = None, *, prefix = ''):
+    if func is None:
+        # func is not passed
+        return partial(debug, prefix=prefix)
 
-        @wraps(func)   #without wraps, there are somethings weird in decorated function, e.g. function.__qualname__ show wrapper name not its own name
-        def wrapper(*args, **kwargs):
-            print(msg)
-            return func(*args, **kwargs)
-        return wrapper
-    return decorator
+    msg = prefix + func.__qualname__
+
+    @wraps(func)   #without wraps, there are somethings weird in decorated function, e.g. function.__qualname__ show wrapper name not its own name
+    def wrapper(*args, **kwargs):
+        print(msg)
+        return func(*args, **kwargs)
+    return wrapper
