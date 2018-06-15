@@ -22,3 +22,13 @@ def debugmethods(cls):
             setattr(cls, key, debug(val))
 
     return cls
+
+def debugattr(cls):
+    orig_getattribute = cls.__getattribute__
+
+    def __getattribute__(self, name):
+        print("Get: ", name)
+        return orig_getattribute(self, name)
+
+    cls.__getattribute__ = __getattribute__
+    return cls

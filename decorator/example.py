@@ -1,5 +1,5 @@
 #example.py
-from debugly import debug, debugmethods
+from debugly import debug, debugmethods, debugattr
 
 @debug(prefix='[Sky Debug]')
 def add(x,y):
@@ -31,3 +31,9 @@ class Spam:
     #@staticmethod
     #def bar():
     #    pass
+
+@debugattr
+class AttrExp:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
