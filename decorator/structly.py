@@ -29,6 +29,16 @@ class Positive(Descriptor):
 			raise ValueError("Value must be > 0")
 		super().__set__(instance, value)
 
+class Sized(Descriptor):
+	def __init__(self, *args, maxlen, **kwargs):
+		self.maxlen = maxlen
+		super().__init__(*args, **kwargs)
+
+	def __set__(self, instance, value):
+		if len(value) > self.maxlen:
+			raise ValueError("Too long string")
+		super().__set__(instance, value)
+
 class Integer(Typed):
 	ty = int
 
@@ -42,6 +52,9 @@ class PositiveInteger(Integer, Positive):
 	pass
 
 class PositiveFloat(Float, Positive):
+	pass
+
+class SizedString(String, Sized):
 	pass
 
 def make_signature(names):
@@ -65,7 +78,7 @@ class Structure(metaclass=StructMeta):
 
 class Stock(Structure):
 	_fields = ['name', 'shares', 'price']
-	name = String('name')
+	name = SizedString('name', maxlen=10)
 	shares = PositiveInteger('shares')
 	price = PositiveFloat('price')
 
