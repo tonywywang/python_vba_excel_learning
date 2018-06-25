@@ -23,6 +23,12 @@ class Typed(Descriptor):
 			raise TypeError("Expectd %s" % self.ty)
 		super().__set__(instance, value)
 
+class Positive(Descriptor):
+	def __set__(self, instance, value):
+		if value < 0:
+			raise ValueError("Value must be > 0")
+		super().__set__(instance, value)
+
 class Integer(Typed):
 	ty = int
 
@@ -31,6 +37,12 @@ class Float(Typed):
 
 class String(Typed):
 	ty = str
+
+class PositiveInteger(Integer, Positive):
+	pass
+
+class PositiveFloat(Float, Positive):
+	pass
 
 def make_signature(names):
 	return Signature(
@@ -54,8 +66,8 @@ class Structure(metaclass=StructMeta):
 class Stock(Structure):
 	_fields = ['name', 'shares', 'price']
 	name = String('name')
-	shares = Integer('shares')
-	price = Float('price')
+	shares = PositiveInteger('shares')
+	price = PositiveFloat('price')
 
 # try import this file and inspect
 # print(inspect.signature(Stock))
