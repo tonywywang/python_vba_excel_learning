@@ -1,4 +1,5 @@
 from inspect import Parameter, Signature
+import re
 
 class Descriptor:
 	def __init__(self, name=None):
@@ -39,6 +40,16 @@ class Sized(Descriptor):
 			raise ValueError("Too long string")
 		super().__set__(instance, value)
 
+class Regex(Descriptor):
+	def __init__(self, *args, pattern, **kwargs):
+		self.pattern = re.compile(pattern)
+		super().__init__(*args, **kwargs)
+
+	def __set__(self, instance, value):
+		if not self.pattern.match(value):
+			raise ValueError("Invalid String")
+		super().__set__(instance, value)
+
 class Integer(Typed):
 	ty = int
 
@@ -55,6 +66,9 @@ class PositiveFloat(Float, Positive):
 	pass
 
 class SizedString(String, Sized):
+	pass
+
+class RexString(SizedString, Regex):
 	pass
 
 def make_signature(names):
@@ -78,7 +92,7 @@ class Structure(metaclass=StructMeta):
 
 class Stock(Structure):
 	_fields = ['name', 'shares', 'price']
-	name = SizedString('name', maxlen=10)
+	name = RexString('name', maxlen=10, pattern='[a-z]+$')
 	shares = PositiveInteger('shares')
 	price = PositiveFloat('price')
 
