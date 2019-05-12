@@ -15,3 +15,11 @@ if not []:
     print(False)  # Null list return False
 else:
     print(True)
+
+'''
+def any(iterable):
+    for i in iterable:
+        if i:
+            return True
+    return False # for an empty iterable, any returns False!
+'''
