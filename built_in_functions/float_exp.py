@@ -1,0 +1,5 @@
+print(float('+1.23'))
+print(float('   -12345\n'))
+print(float('1e-003'))
+print(float('+1E6'))
+print(float('-Infinity'))
