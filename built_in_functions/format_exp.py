@@ -14,3 +14,9 @@ class Point:
         return 'Point({self.x}, {self.y})'.format(self=self)
 c = Point(3, 4)
 print(c)   # Point(3, 4)
+
+coord = (3, 5)
+print('X: {0[0]};  Y: {0[1]}'.format(coord))
+
+coord = [3, 5]
+print('X: {0[0]};  Y: {0[1]}'.format(coord))
