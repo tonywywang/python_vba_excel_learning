@@ -4,3 +4,5 @@ print('{2}, {1}, {0}'.format(*'fed'))          # d, e, f
 print('Coodinators: {latitude} {longitude}'.format(latitude='37.24N', longitude='-115.81W'))  # Coodinators: 37.24N -115.81W
 coord = {'latitude':'37.24N', 'longitude':'-115.81W'}
 print('Coodinators: {latitude} {longitude}'.format(**coord)) # Coodinators: 37.24N -115.81W
+c = 3-5j
+print("{0} has real {0.real} and imag {0.imag}".format(c)) # (3-5j) has real 3.0 and imag -5.0
