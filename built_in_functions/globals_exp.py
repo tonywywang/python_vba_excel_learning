@@ -13,3 +13,10 @@ def H():
 F()  # 1
 G()  # 100
 H()  # 3 100
+
+x = 100
+def foo():
+	# x = 2   if this is uncommented, y = 3 locals variable is used
+    y = eval("x + 1", globals(), locals())
+    print("y=", y) # should be 3
+foo()  # 101
