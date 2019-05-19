@@ -20,3 +20,13 @@ def foo():
     y = eval("x + 1", globals(), locals())
     print("y=", y) # should be 3
 foo()  # 101
+
+class C:
+    def __init__(self, x):
+        self.x = x
+        print("x = ", self.x)
+def call(str):
+    return globals()[str](4)
+
+c = call('C')
+print(c.x)
