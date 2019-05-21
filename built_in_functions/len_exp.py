@@ -8,3 +8,4 @@ g1 = (i for i in range(50))
 len(g1) # TypeError: object of type 'generator' has no len()
 t1 = (1, 2, 3)
 len(t1)
+len(range(10)) #10
