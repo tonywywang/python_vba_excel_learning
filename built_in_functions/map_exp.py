@@ -29,4 +29,4 @@ print(my_tuple) # (A, B, C)
 list_param = [1, 2, 3, 4]
 tuple_param = (5, 7, 9, 11)
 map_iterator = map(lambda x, y: x*y, list_param, tuple_param)
-print_iter(map_iterator)
+print_iter(map_iterator)  # 5, 14, 27, 44
