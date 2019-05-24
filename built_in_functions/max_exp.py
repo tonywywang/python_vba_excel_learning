@@ -12,3 +12,10 @@ x1 = [10, 20, 30]
 x2 = [5, 15, 40, 25]
 
 print(max(x1, x2, key=len))
+
+ages = {'John': 21,
+        'Mike': 52,
+        'Sarah': 12,
+        'Bob': 43
+       }
+print(max(zip(ages.values(), ages.keys())))
