@@ -29,3 +29,24 @@ class Parrot:
         return self._voltage
 p1 = Parrot()
 print(p1.voltage)  # 100000
+
+class C1:
+    def __init__(self):
+        self._x = None
+
+    @property
+    def x(self):
+        """I'm the 'x' property."""
+        return self._x
+
+    @x.setter
+    def x(self, value):
+        self._x = value
+
+    @x.deleter
+    def x(self):
+        del self._x
+c1 = C1()
+c1.x = 100
+print(c1.x)
+del c1.x
