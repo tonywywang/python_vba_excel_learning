@@ -18,3 +18,14 @@ c1.x = 2
 print(c1.x)
 del c1.x
 #print(c1.x)  Exception Error since there is no x property
+
+class Parrot:
+    def __init__(self):
+        self._voltage = 100000
+
+    @property
+    def voltage(self):
+        """Get the current voltage."""
+        return self._voltage
+p1 = Parrot()
+print(p1.voltage)  # 100000
