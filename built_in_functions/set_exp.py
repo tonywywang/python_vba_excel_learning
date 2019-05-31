@@ -34,4 +34,9 @@ B = {2, 3, 5, 7} #initializing set B
 union_operation = A.union(B)
 
 print("A union B :")
-print(union_operation)
+print(union_operation)    # {1, 2, 3, 4, 5, 7}
+
+intersection_operation = A.intersection(B)
+
+print("A intersection B :")
+print(intersection_operation)   # {2, 3}
