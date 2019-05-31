@@ -19,3 +19,11 @@ print(theSet)
 #call discard() function again to remove 3
 theSet.discard(3) #This won't raise any exception
 print(theSet)
+
+#call remove() function to remove 5
+theSet.remove(5)
+print(theSet)
+
+#call remove() function to remove 5 again
+theSet.remove(5) #this would raise exception
+print(theSet) #this won't be printed
