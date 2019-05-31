@@ -27,3 +27,11 @@ print(theSet)
 #call remove() function to remove 5 again
 theSet.remove(5) #this would raise exception
 print(theSet) #this won't be printed
+
+A = {1, 2, 3, 4} #initializing set A
+B = {2, 3, 5, 7} #initializing set B
+
+union_operation = A.union(B)
+
+print("A union B :")
+print(union_operation)
