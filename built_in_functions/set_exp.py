@@ -40,3 +40,12 @@ intersection_operation = A.intersection(B)
 
 print("A intersection B :")
 print(intersection_operation)   # {2, 3}
+
+difference_operation = A.difference(B)
+
+print("A-B :")
+print(difference_operation)  #{1, 4}
+
+difference_operation = B.difference(A)
+print("B-A :")
+print(difference_operation)  # {5, 7}
