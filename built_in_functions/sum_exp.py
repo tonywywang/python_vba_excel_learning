@@ -6,3 +6,15 @@ dictnum = {'a':1, 'b':2, 'c':2}
 sum(dictnum.values()) # 5
 dictnum = {'a':1, 'b':2, 'b':2}
 sum(dictnum.values())  # 3
+
+def fib(num):
+	a, b = 1, 1
+	while (num >= 1):
+		yield a
+		num = num - 1
+		a, b = b, a+b
+
+for i in fib(6):
+    print(i)  # 1 1 2 3 5 8
+      
+sum(fib(6))   # 20
