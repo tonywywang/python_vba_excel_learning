@@ -18,3 +18,12 @@ for i in fib(6):
     print(i)  # 1 1 2 3 5 8
       
 sum(fib(6))   # 20
+
+n = fib(6)
+print(next(n))   # 1
+print(next(n))   # 1
+print(next(n))   # 2
+print(next(n))   # 3
+print(next(n))   # 5
+print(next(n))   # 8
+print(next(n))   # Error: StopIteration
