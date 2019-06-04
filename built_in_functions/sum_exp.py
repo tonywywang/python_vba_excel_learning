@@ -27,3 +27,5 @@ print(next(n))   # 3
 print(next(n))   # 5
 print(next(n))   # 8
 print(next(n))   # Error: StopIteration
+
+print(type(fib(2)))  # class generator
