@@ -34,3 +34,9 @@ coord = {'latitude': '37.24N', 'longitude': '-115.81W'}
 fenzi = 19
 fenmu = 21
 '{:.2%}'.format(fenzi/fenmu)  # float format
+
+for align, text in zip('<^>', ['left', 'center', 'right']):
+    print('{0:{fill}{align}16}'.format(text, fill=align, align=align))  # align fill format example
+#left<<<<<<<<<<<<
+#^^^^^center^^^^^
+#>>>>>>>>>>>right
