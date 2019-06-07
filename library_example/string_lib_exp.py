@@ -28,3 +28,5 @@ coord = {'latitude': '37.24N', 'longitude': '-115.81W'}
 "int: {0:d};  hex: {0:x};  oct: {0:o};  bin: {0:b}".format(42) #'int: 42;  hex: 2a;  oct: 52;  bin: 101010'
 # with 0x, 0o, or 0b as prefix:
 "int: {0:d};  hex: {0:#x};  oct: {0:#o};  bin: {0:#b}".format(42) #'int: 42;  hex: 0x2a;  oct: 0o52;  bin: 0b101010'
+
+'{:,}'.format(1234567890)   # Using the comma as a thousands separator: '1,234,567,890'
