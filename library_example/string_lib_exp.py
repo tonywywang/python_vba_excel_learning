@@ -44,3 +44,8 @@ for align, text in zip('<^>', ['left', 'center', 'right']):
 
 s = Template('$who likes $what')
 s.substitute(who='tim', what='basketball')  #'tim likes basketball'
+
+d = dict(who='tim')
+Template('$who likes 100').substitute(d) # 'tim likes 100'
+Template('$who likes $100').substitute(d) # Invalid placeholder in string: line 1, col 12 since there is '$' before 100
+Template('$who likes $what').substitute(d) # key error what
