@@ -49,3 +49,5 @@ d = dict(who='tim')
 Template('$who likes 100').substitute(d) # 'tim likes 100'
 Template('$who likes $100').substitute(d) # Invalid placeholder in string: line 1, col 12 since there is '$' before 100
 Template('$who likes $what').substitute(d) # key error what
+
+Template('$who likes $what').safe_substitute(d) # 'tim likes $what'
