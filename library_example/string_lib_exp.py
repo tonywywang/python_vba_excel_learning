@@ -1,4 +1,5 @@
 import string
+from string import Template
 
 string.digits             # '0123456789'
 string.ascii_letters      # 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -40,3 +41,6 @@ for align, text in zip('<^>', ['left', 'center', 'right']):
 #left<<<<<<<<<<<<
 #^^^^^center^^^^^
 #>>>>>>>>>>>right
+
+s = Template('$who likes $what')
+s.substitute(who='tim', what='basketball')  #'tim likes basketball'
