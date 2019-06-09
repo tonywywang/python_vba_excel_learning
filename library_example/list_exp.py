@@ -9,3 +9,4 @@ l2[1:5:1]  # [2, 3, 4, 6]  1: start 5: end 1: interval
 l1.append(10)
 l1.extend([11, 12, 23])  # extend argument must be iterable object
 l1.extend(range(5))
+l1.clear()   # flush all the elements in list
