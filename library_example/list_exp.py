@@ -14,3 +14,13 @@ l1.clear()   # flush all the elements in list
 l3 = l1.copy()
 l3[0] = 100
 print(id(l3[0]), id(l1[0]))  # It seems list copy not a shallow copy, l3[0], l1[0] have different memory address
+
+print(sorted(l1))
+l1.insert(10, -1) # insert(index, value)
+
+print(sorted(l1))
+l1.insert(10, -1) # insert(index, value)
+l1.pop()  # by default retrieves the last element and remove it
+l1.pop(10)  # retrieves the index 10 element and remove it
+l1.remove(3)  # remove the first elment of the value and keep the others
+l1.reverse()  # reverset the list
