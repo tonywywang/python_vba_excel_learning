@@ -10,3 +10,7 @@ l1.append(10)
 l1.extend([11, 12, 23])  # extend argument must be iterable object
 l1.extend(range(5))
 l1.clear()   # flush all the elements in list
+
+l3 = l1.copy()
+l3[0] = 100
+print(id(l3[0]), id(l1[0]))  # It seems list copy not a shallow copy, l3[0], l1[0] have different memory address
