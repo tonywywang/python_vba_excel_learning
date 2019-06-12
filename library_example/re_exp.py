@@ -16,10 +16,14 @@ rule = re.compile('a*')         # repetition of a, 'a', 'aa', 'aaa', 'aa...' mat
 g = rule.match('abb a ab')
 g.group(0)  # a
 
-rule = re.compile('ab*')         # repetition of b, 'ab', 'abb', 'abbb', 'abbb...' matches
+rule = re.compile('ab*')         # repetition of b, 'a', ab', 'abb', 'abbb', 'abbb...' matches
 g = rule.match('abc a ab')
 g.group(0)  # ab
 
 rule = re.compile('ab*')         # repetition of a, 'a', 'aa', 'aaa', 'aa...' matches
 g = rule.match('cdeab')
 #g.group(0)  # no match None
+
+rule = re.compile('ab*')         # * means repetion 0 or more of 'b' so match 'a'
+g = rule.match('abc a ab')
+g.group(0)   # a
