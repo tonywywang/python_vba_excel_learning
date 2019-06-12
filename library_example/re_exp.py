@@ -27,3 +27,7 @@ g = rule.match('cdeab')
 rule = re.compile('ab*')         # * means repetion 0 or more of 'b' so match 'a'
 g = rule.match('abc a ab')
 g.group(0)   # a
+
+rule = re.compile('ab+')
+g = rule.match('abc a ab')       # * means repetion 1 or more of 'b' so match 'ab'
+g.group(0)   # ab
