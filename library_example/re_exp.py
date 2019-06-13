@@ -46,3 +46,12 @@ g.group(0)                     # '<a> b <c>'  greedy
 rule = re.compile('<.*?>')
 g = rule.search('<a> b <c>')
 g.group(0)                     # '<a>'    non-greedy
+
+rule = re.compile('a{6}')
+g = rule.search('aaa aaaa aaaaa aaaaaa') # 'aaaaaa'
+rule = re.compile('a{4,6}')
+g = rule.search('aaa aaaa aaaaa aaaaaa') # 'aaaa'
+rule = re.compile('a{4,6}')
+g = rule.search('aaaaaaaa bbb cc d') # match the first 'aaaaaaaa' but just fetch the first 6 chars 'aaaaaa'
+rule = re.compile('a{4,6}?')
+g = rule.search('aaaaaaaa a aa aaa') # match the first 'aaaaaaaa' but just fetch the first 4 chars 'aaaaaa'
