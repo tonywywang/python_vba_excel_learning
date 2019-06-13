@@ -37,3 +37,5 @@ g = rule.match('c abc ab')       # Search the string from the start
 g                                # None
 g = rule.search('c a ab')        # Search the whole string
 g.group(0)                       # 'a' , the ab? match 'a', 'ab' ? 0 or 1
+g = rule.search('abc a ab')
+g.group(0)                       # 'ab' substring of 'abc'
