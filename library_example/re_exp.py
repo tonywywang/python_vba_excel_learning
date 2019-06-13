@@ -55,3 +55,6 @@ rule = re.compile('a{4,6}')
 g = rule.search('aaaaaaaa bbb cc d') # match the first 'aaaaaaaa' but just fetch the first 6 chars 'aaaaaa'
 rule = re.compile('a{4,6}?')
 g = rule.search('aaaaaaaa a aa aaa') # match the first 'aaaaaaaa' but just fetch the first 4 chars 'aaaaaa'
+
+rule = re.compile('\*{4,6}?')
+g = rule.search('******')  # '\' to escape special characters * ? 
