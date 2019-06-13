@@ -31,3 +31,9 @@ g.group(0)   # a
 rule = re.compile('ab+')
 g = rule.match('abc a ab')       # * means repetion 1 or more of 'b' so match 'ab'
 g.group(0)   # ab
+
+rule = re.compile('ab?')
+g = rule.match('c abc ab')       # Search the string from the start
+g                                # None
+g = rule.search('c a ab')        # Search the whole string
+g.group(0)                       # 'a' , the ab? match 'a', 'ab' ? 0 or 1
