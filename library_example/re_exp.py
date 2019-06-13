@@ -39,3 +39,10 @@ g = rule.search('c a ab')        # Search the whole string
 g.group(0)                       # 'a' , the ab? match 'a', 'ab' ? 0 or 1
 g = rule.search('abc a ab')
 g.group(0)                       # 'ab' substring of 'abc'
+
+rule = re.compile('<.*>')
+g = rule.search('<a> b <c>')
+g.group(0)                     # '<a> b <c>'  greedy
+rule = re.compile('<.*?>')
+g = rule.search('<a> b <c>')
+g.group(0)                     # '<a>'    non-greedy
