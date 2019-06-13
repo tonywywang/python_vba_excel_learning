@@ -58,3 +58,6 @@ g = rule.search('aaaaaaaa a aa aaa') # match the first 'aaaaaaaa' but just fetch
 
 rule = re.compile('\*{4,6}?')
 g = rule.search('******')  # '\' to escape special characters * ? 
+
+rule = re.compile('[amk]')
+g = rule.search('zdfpwfewmdsfew') # 'm'
