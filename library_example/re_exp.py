@@ -82,4 +82,11 @@ g = rule.search('王')
 print(g.group(0))     # match any Unicode character even Chinese word character
 rule = re.compile('\W')
 g = rule.search('王')
-print(g.group(0))     # doesn't match word character
+#print(g.group(0))     # doesn't match word character
+
+rule = re.compile('\d')
+g = rule.search('1')
+print(g.group(0))     # match any decimal digit [0-9]
+rule = re.compile('\D')
+g = rule.search('1')
+#print(g.group(0))     # doesn't match a decimal digit [^0-9]
