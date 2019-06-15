@@ -66,3 +66,13 @@ compile_str = "-I/home/identify/github_ap_dev_11ax/wing/src/dataplane/inc -I/hom
 option_list = re.findall(r'-D\w+',compile_str)
 for str in option_list:
     print(str)
+
+rule = re.compile('\s')
+g = rule.search(' ')
+g = rule.search('\t')
+g = rule.search('\n')
+g = rule.search('\r')
+print(g.group(0))     # match one space and Matches Unicode whitespace characters (which includes [ \t\n\r\f\v])
+rule = re.compile('\S')
+g = rule.search('\n')
+#print(g.group(0))     # \S doesn't match white space character which excludes [ \t\n\r\f\v]
