@@ -76,3 +76,10 @@ print(g.group(0))     # match one space and Matches Unicode whitespace character
 rule = re.compile('\S')
 g = rule.search('\n')
 #print(g.group(0))     # \S doesn't match white space character which excludes [ \t\n\r\f\v]
+
+rule = re.compile('\w')
+g = rule.search('王')
+print(g.group(0))     # match any Unicode character even Chinese word character
+rule = re.compile('\W')
+g = rule.search('王')
+print(g.group(0))     # doesn't match word character
