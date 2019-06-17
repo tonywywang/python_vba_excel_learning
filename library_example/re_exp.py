@@ -99,5 +99,21 @@ re.split(r'\W+', 'Words, words, words.', 1)
 # ['Words', 'words, words.']
 re.split('[abf]+', '0a3B9F7', flags=re.IGNORECASE)
 # ['0', '3', '9', '7']
-re.split(r'(\W+)', '...words, words...')
+re.split(r'(\W+)', '...words, words...')r
 # ['', '...', 'words', ', ', 'words', '...', '']
+
+it1 = re.finditer(r'\w+', 'Words, words, words.')
+for i in it1:
+    print(i.group())  # Words, words, words
+l1 = re.findall(r'\w+', 'Words, words, words.')
+for i in l1:
+    print(i)          # Words, words, words
+it1 = re.finditer(r'\W+', 'Words, words, words.')
+for i in it1:
+    print(i.group())  # , , .
+l1 = re.findall(r'\W+', 'Words, words, words.')
+for i in l1:
+    print(i)          # , , .
+it1 = re.finditer(r'[Ww][oO][Rr][dD]', 'Words, words, words.')
+for i in it1:
+    print(i.group())  # Word word word
