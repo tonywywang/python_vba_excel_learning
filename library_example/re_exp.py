@@ -90,3 +90,14 @@ print(g.group(0))     # match any decimal digit [0-9]
 rule = re.compile('\D')
 g = rule.search('1')
 #print(g.group(0))     # doesn't match a decimal digit [^0-9]
+
+re.split(r'\W+', 'Words, words, words.')
+# ['Words', 'words', 'words', '']
+re.split(r'(\W+)', 'Words, words, words.')
+# ['Words', ', ', 'words', ', ', 'words', '.', '']
+re.split(r'\W+', 'Words, words, words.', 1)
+# ['Words', 'words, words.']
+re.split('[abf]+', '0a3B9F7', flags=re.IGNORECASE)
+# ['0', '3', '9', '7']
+re.split(r'(\W+)', '...words, words...')
+# ['', '...', 'words', ', ', 'words', '...', '']
