@@ -117,3 +117,7 @@ for i in l1:
 it1 = re.finditer(r'[Ww][oO][Rr][dD]', 'Words, words, words.')
 for i in it1:
     print(i.group())  # Word word word
+
+inputStr = "hello 123 world 456 bye 789"
+replacedStr = re.sub(r'\d+', '111', inputStr, 2)
+print(replacedStr)   # hello 111 world 111 bye 789
