@@ -121,3 +121,20 @@ for i in it1:
 inputStr = "hello 123 world 456 bye 789"
 replacedStr = re.sub(r'\d+', '111', inputStr, 2)
 print(replacedStr)   # hello 111 world 111 bye 789
+
+import re
+
+def PythonReSub():
+    inputStr = "hello 123 world 456 bye 789"
+    
+    def _add111(matched):
+        input_num_str = matched.group("number")
+        input_num_value = int(input_num_str)
+        output_num_value = input_num_value + 111
+        output_num_str = str(output_num_value)
+        return output_num_str
+    
+    replacedStr = re.sub("(?P<number>\d+)", _add111, inputStr)
+    print("replacedStr=",replacedStr)
+if __name__=="__main__":
+    PythonReSub();
