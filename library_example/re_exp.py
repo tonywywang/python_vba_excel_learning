@@ -122,6 +122,10 @@ inputStr = "hello 123 world 456 bye 789"
 replacedStr = re.sub(r'\d+', '111', inputStr, 2)
 print(replacedStr)   # hello 111 world 111 bye 789
 
+inputStr = "hello 123 world 456 bye 789" 
+replacedStr = re.subn(r'\d+', '111', inputStr, 2)   # return a tuple with replace count
+print(replacedStr)
+
 import re
 
 def PythonReSub():
