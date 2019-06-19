@@ -1,4 +1,5 @@
 import re
+import string
 
 g = re.search('.', 'abcdef') # '.' (Dot.) In the default mode, this matches any character except a newline. Result 'a'
 g = re.search('.', '\n')     # newline symbol, '.' (Dot.) can not match
@@ -126,8 +127,6 @@ inputStr = "hello 123 world 456 bye 789"
 replacedStr = re.subn(r'\d+', '111', inputStr, 2)   # return a tuple with replace count
 print(replacedStr)
 
-import re
-
 def PythonReSub():
     inputStr = "hello 123 world 456 bye 789"
     
@@ -142,3 +141,7 @@ def PythonReSub():
     print("replacedStr=",replacedStr)
 if __name__=="__main__":
     PythonReSub();
+
+print(re.escape('python.exe'))
+legal_chars = string.ascii_lowercase + string.digits + "!#$%&'*+-.^_`"
+print('[%s]+' % re.escape(legal_chars))
