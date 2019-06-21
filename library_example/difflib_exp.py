@@ -14,3 +14,8 @@ s1 = ' abcd'
 s2 = 'abcd abcd'
 matcher = difflib.SequenceMatcher(lambda x:x in ' ', s1, s2)
 print(matcher.find_longest_match(0, 5, 0, 9))  # Match(a=1, b=0, size=4)
+
+f = lambda x:x in ' '
+f('')   # True
+f(' ')  # True
+f('1')  # False
