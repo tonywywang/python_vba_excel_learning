@@ -62,4 +62,26 @@ text2 = '''  1. Beautiful is better than ugly.
    5. Flat is better than nested.
  '''.splitlines(keepends=True)
 diff = difflib.HtmlDiff().make_file(text1, text2)
-print(diff)
+print(diff
+
+s1 = ['bacon\n', 'eggs\n', 'ham\n', 'guido\n']
+s2 = ['python\n', 'eggy\n', 'hamster\n', 'guido\n']
+diff_gen = difflib.context_diff(s1, s2, fromfile='before.py', tofile='after.py')
+for i in diff_gen:
+    print(i)
+#context_diff return a diff info generator
+'''
+*** before.py
+--- after.py
+***************
+*** 1,4 ****
+! bacon
+! eggs
+! ham
+  guido
+--- 1,4 ----
+! python
+! eggy
+! hamster
+  guido
+'''
