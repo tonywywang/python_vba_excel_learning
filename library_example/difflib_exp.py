@@ -50,3 +50,16 @@ ratio(): 0.6896551724137931
 quick_ratio(): 0.6896551724137931
 real_quick_ratio(): 0.896551724137931
 '''
+
+text1 = '''  1. Beautiful is better than ugly.
+   2. Explicit is better than implicit.
+   3. Simple is better than complex.
+   4. Complex is better than complicated.
+ '''.splitlines(keepends=True)
+text2 = '''  1. Beautiful is better than ugly.
+   3.   Simple is better than complex.
+   4. Complicated is better than complex.
+   5. Flat is better than nested.
+ '''.splitlines(keepends=True)
+diff = difflib.HtmlDiff().make_file(text1, text2)
+print(diff)
