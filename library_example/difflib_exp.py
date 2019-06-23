@@ -85,3 +85,18 @@ for i in diff_gen:
 ! hamster
   guido
 '''
+s1 = ['bacon\n', 'eggs\n', 'ham\n', 'guido\n']
+s2 = ['python\n', 'eggy\n', 'hamster\n', 'guido\n']
+diff_gen = difflib.unified_diff(s1, s2, fromfile='before.py', tofile='after.py')
+for i in diff_gen:
+    print(i)
+--- before.py
++++ after.py
+@@ -1,4 +1,4 @@
+-bacon
+-eggs
+-ham
++python
++eggy
++hamster
+ guido
