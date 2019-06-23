@@ -100,3 +100,14 @@ for i in diff_gen:
 +eggy
 +hamster
  guido
+
+line1 = "#line is commented"
+print(difflib.IS_LINE_JUNK(line1))  # False
+line2 = "#"
+print(difflib.IS_LINE_JUNK(line2))  # True
+line3 = " "
+print(difflib.IS_LINE_JUNK(line3))  # True
+line4 = "\n"
+print(difflib.IS_LINE_JUNK(line4))  # True
+line5 = "\r"
+print(difflib.IS_LINE_JUNK(line5))  # True
