@@ -22,3 +22,10 @@ cccccccccc
 cccccccccc
 '''
 # fill function works same as "\n".join(wrap(text, ...))
+
+textwrap.shorten("Hello  world!", width=12)
+# 'Hello world!'
+textwrap.shorten("Hello  world!", width=11)
+# 'Hello [...]'
+textwrap.shorten("Hello world", width=10, placeholder="...")
+# 'Hello...'
