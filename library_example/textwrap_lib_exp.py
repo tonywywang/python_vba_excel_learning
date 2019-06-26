@@ -48,3 +48,17 @@ hello
   world
 
 '''
+
+s = "hello\n\n \nworld"
+print(s)
+print(textwrap.indent(s, "+ ", lambda line: True))
+'''
+hello
+
+ 
+world
++ hello
++ 
++  
++ world
+'''
