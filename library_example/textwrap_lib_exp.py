@@ -29,3 +29,22 @@ textwrap.shorten("Hello  world!", width=11)
 # 'Hello [...]'
 textwrap.shorten("Hello world", width=10, placeholder="...")
 # 'Hello...'
+
+s = '''
+    hello
+      world
+    '''
+print(s)
+print(textwrap.dedent(s)) # This can be used to make triple-quoted strings 
+                          # line up with the left edge of the display, 
+                          # while still presenting them in the source code in indented form.
+'''
+
+    hello
+      world
+    
+
+hello
+  world
+
+'''
