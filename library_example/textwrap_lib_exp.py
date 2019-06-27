@@ -68,3 +68,9 @@ wrapper1.width =5
 s = "hello\nworld\n"
 print(wrapper1.wrap(s))
 #['<>hel', 'lo', 'world'] every line is at most width 5
+print(wrapper1.fill(s))
+'''
+<>hel
+lo
+world
+'''
