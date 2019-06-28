@@ -74,3 +74,15 @@ print(wrapper1.fill(s))
 lo
 world
 '''
+
+wrapper2 = textwrap.TextWrapper()
+wrapper2.break_on_hyphen = True
+wrapper2.width = 5
+s = "h-e-l-l-o-world\n"   # '-' hyphen is useded to split
+print(wrapper2.fill(s))
+'''
+h-e-
+l-l-
+o-
+world
+'''
