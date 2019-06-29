@@ -23,3 +23,5 @@ unicodedata.name('/')
 # 'SOLIDUS'
 unicodedata.name('王')
 # 'CJK UNIFIED IDEOGRAPH-738B'
+unicodedata.category('W')
+# 'Lu'  'L'etter 'U'pper
