@@ -43,5 +43,9 @@ unpack(">lhl", binary_data)
 binary_data = pack("<lhl", 65534,2,3)
 print(binary_data)
 unpack("<lhl", binary_data)
+binary_data = pack("!lhl", 65534,2,3)
+print(binary_data)
+unpack("!lhl", binary_data)
 # b'\x00\x00\xff\xfe\x00\x02\x00\x00\x00\x03'  < big-endian
 # b'\xfe\xff\x00\x00\x02\x00\x03\x00\x00\x00'  > little-endian
+# b'\x00\x00\xff\xfe\x00\x02\x00\x00\x00\x03'  < network-endidan
