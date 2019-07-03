@@ -55,3 +55,4 @@ ethernet_data = b'\x94\x56\x8A\x6E\x77\x43\xFF\xFF\xFF\xFF\xFF\xFF\x00\x08'
 dest_mac, src_mac, protocol = unpack('! 6s 6s H', ethernet_data[:14])
 print(binascii.hexlify(dest_mac), binascii.hexlify(src_mac), hex(socket.htons(protocol)))
 #b'94568a6e7743' b'ffffffffffff' 0x800
+ip_protocol, source_ip, target_ip = struct.unpack('! 8x B B 2x 4s 4s' , data[:20]) # x means pad value no value
