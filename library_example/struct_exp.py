@@ -49,3 +49,9 @@ unpack("!lhl", binary_data)
 # b'\x00\x00\xff\xfe\x00\x02\x00\x00\x00\x03'  < big-endian
 # b'\xfe\xff\x00\x00\x02\x00\x03\x00\x00\x00'  > little-endian
 # b'\x00\x00\xff\xfe\x00\x02\x00\x00\x00\x03'  < network-endidan
+
+# An example for extract ethernet data
+ethernet_data = b'\x94\x56\x8A\x6E\x77\x43\xFF\xFF\xFF\xFF\xFF\xFF\x00\x08'
+dest_mac, src_mac, protocol = unpack('! 6s 6s H', ethernet_data[:14])
+print(binascii.hexlify(dest_mac), binascii.hexlify(src_mac), hex(socket.htons(protocol)))
+#b'94568a6e7743' b'ffffffffffff' 0x800
