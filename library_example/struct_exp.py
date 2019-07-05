@@ -56,3 +56,32 @@ dest_mac, src_mac, protocol = unpack('! 6s 6s H', ethernet_data[:14])
 print(binascii.hexlify(dest_mac), binascii.hexlify(src_mac), hex(socket.htons(protocol)))
 #b'94568a6e7743' b'ffffffffffff' 0x800
 ip_protocol, source_ip, target_ip = struct.unpack('! 8x B B 2x 4s 4s' , data[:20]) # x means pad value no value
+
+#Extract the IP Header Field
+ip_head = pkt[0][14:34]
+ip_head_unpacked = struct.unpack("!1s1s1H1H2s1B1B2s4s4s", ip_head)#Rip out all the fields in the IP
+
+ver_head_length = binascii.hexlify(ip_head_unpacked[0])
+service_field = binascii.hexlify(ip_head_unpacked[1])
+total_length = str(ip_head_unpacked[2])
+identification = str(ip_head_unpacked[3])
+flag_frag = binascii.hexlify(ip_head_unpacked[4])
+ttl = str(ip_head_unpacked[5])
+protocol = str(ip_head_unpacked[6])
+checkSum = binascii.hexlify(ip_head_unpacked[7])
+src_ip = socket.inet_ntoa(ip_head_unpacked[8])
+dst_ip = socket.inet_ntoa(ip_head_unpacked[9])
+
+#Extract the TCP Header
+tcpHeader = pkt[0][34:54]
+tcp_hdr = struct.unpack("!HHII2sH2sH", tcpHeader)
+
+dst_port = str(tcp_hdr[0])
+src_port = str(tcp_hdr[1])
+seq_no = str(tcp_hdr[2])
+ack_no = str(tcp_hdr[3])
+head_length_6_point = binascii.hexlify(tcp_hdr[4])
+window_size = str(tcp_hdr[5])
+checksum = binascii.hexlify(tcp_hdr[6])
+urgent_pointer = str(tcp_hdr[7])  
+data = pkt[0][54:]
