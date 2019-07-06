@@ -90,3 +90,6 @@ pack('ci', b'*', 0x12131415) # c = char i = int
 # b'*\x00\x00\x00\x12\x13\x14\x15'
 pack('ic', 0x12131415, b'*')
 # b'\x12\x13\x14\x15*'
+
+pack('llh0l', 1, 2, 3)  # The following format 'llh0l' specifies two pad bytes at the end, assuming longs are aligned on 4-byte boundaries.
+# b'\x00\x00\x00\x01\x00\x00\x00\x02\x00\x03\x00\x00'
