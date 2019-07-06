@@ -85,3 +85,8 @@ window_size = str(tcp_hdr[5])
 checksum = binascii.hexlify(tcp_hdr[6])
 urgent_pointer = str(tcp_hdr[7])  
 data = pkt[0][54:]
+
+pack('ci', b'*', 0x12131415) # c = char i = int
+# b'*\x00\x00\x00\x12\x13\x14\x15'
+pack('ic', 0x12131415, b'*')
+# b'\x12\x13\x14\x15*'
