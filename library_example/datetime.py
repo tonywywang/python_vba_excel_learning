@@ -31,3 +31,8 @@ print(d1)
 t = datetime(2009, 7, 10, 18, 44, 59, 193982, tzinfo=pytz.utc)
 print(str(t))
 # 2009-07-10 18:44:59.193982+00:00
+
+local_tz = pytz.timezone('Europe/Moscow')
+t = datetime(2009, 7, 10, 18, 44, 59, 193982, tzinfo=local_tz)
+print(str(t))
+# 2009-07-10 18:44:59.193982+02:30
