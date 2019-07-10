@@ -1,4 +1,5 @@
 import datetime
+import pytz
 
 t1 = datetime.timedelta(hours=3)
 t2 = datetime.timedelta(hours=2)
@@ -26,3 +27,7 @@ print(d1)
 #<ipython-input-8-a38be9935a92> in <module>()
 #----> 1 d1 = datetime.date(2019, 13, 8)
 # ValueError: month must be in 1..12
+
+t = datetime(2009, 7, 10, 18, 44, 59, 193982, tzinfo=pytz.utc)
+print(str(t))
+# 2009-07-10 18:44:59.193982+00:00
