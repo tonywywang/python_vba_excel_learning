@@ -36,3 +36,10 @@ local_tz = pytz.timezone('Europe/Moscow')
 t = datetime(2009, 7, 10, 18, 44, 59, 193982, tzinfo=local_tz)
 print(str(t))
 # 2009-07-10 18:44:59.193982+02:30
+
+now_time = datetime.datetime.utcnow()
+print(now_time)
+now_time.replace(tzinfo=datetime.timezone.utc).astimezone(tz=None)
+# datetime change utc timezone to local timezone
+# 2019-07-11 02:28:21.656157
+# datetime.datetime(2019, 7, 10, 22, 28, 21, 656157, tzinfo=datetime.timezone(datetime.timedelta(-1, 72000), 'Eastern Summer Time'))
