@@ -1,5 +1,6 @@
 import datetime
 import pytz
+from pytz import timezone
 
 t1 = datetime.timedelta(hours=3)
 t2 = datetime.timedelta(hours=2)
@@ -43,3 +44,11 @@ now_time.replace(tzinfo=datetime.timezone.utc).astimezone(tz=None)
 # datetime change utc timezone to local timezone
 # 2019-07-11 02:28:21.656157
 # datetime.datetime(2019, 7, 10, 22, 28, 21, 656157, tzinfo=datetime.timezone(datetime.timedelta(-1, 72000), 'Eastern Summer Time'))
+
+now_time.tzinfo
+tzchina = timezone('Asia/Chongqing')
+tzchina
+utc = timezone('UTC')
+now_time.replace(tzinfo=utc).astimezone(tzchina)
+# using pytz to change timezone
+# datetime.datetime(2019, 7, 11, 10, 28, 21, 656157, tzinfo=<DstTzInfo 'Asia/Chongqing' CST+8:00:00 STD>)
