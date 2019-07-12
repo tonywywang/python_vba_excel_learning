@@ -52,3 +52,12 @@ utc = timezone('UTC')
 now_time.replace(tzinfo=utc).astimezone(tzchina)
 # using pytz to change timezone
 # datetime.datetime(2019, 7, 11, 10, 28, 21, 656157, tzinfo=<DstTzInfo 'Asia/Chongqing' CST+8:00:00 STD>)
+
+from pytz import timezone
+tzchina.utcoffset(datetime.datetime.now())
+tzfr = timezone('Europe/Paris')
+utc = timezone('UTC')
+print(now_time.replace(tzinfo=utc).astimezone(tzfr))
+tzfr.utcoffset(datetime.datetime.now())
+# 2019-07-12 02:47:27.296258+02:00
+# datetime.timedelta(0, 7200)
