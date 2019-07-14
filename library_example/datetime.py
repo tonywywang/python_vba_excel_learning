@@ -64,3 +64,16 @@ tzfr.utcoffset(datetime.datetime.now())
 
 d = datetime.date.fromordinal(730920) # 730920th day after 1. 1. 0001
 d # datetime.date(2002, 3, 11)
+
+t = d.timetuple()
+for i in t:
+    print(i)
+# 2002    # year
+# 3       # month
+# 11      # day
+# 0
+# 0
+# 0
+# 0       # weekday (0 = Monday)
+# 70      # 70th day of year
+# -1
