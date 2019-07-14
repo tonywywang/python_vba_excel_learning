@@ -79,3 +79,5 @@ for i in t:
 # -1
 d.strftime("%Y-%m-%d")
 # "2002-03-11'
+d.strftime("%Y-%B-%a")
+# '2002-March-Mon'
