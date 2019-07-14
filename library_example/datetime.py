@@ -77,3 +77,5 @@ for i in t:
 # 0       # weekday (0 = Monday)
 # 70      # 70th day of year
 # -1
+d.strftime("%Y-%m-%d")
+# "2002-03-11'
