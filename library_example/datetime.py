@@ -61,3 +61,6 @@ print(now_time.replace(tzinfo=utc).astimezone(tzfr))
 tzfr.utcoffset(datetime.datetime.now())
 # 2019-07-12 02:47:27.296258+02:00
 # datetime.timedelta(0, 7200)
+
+d = datetime.date.fromordinal(730920) # 730920th day after 1. 1. 0001
+d # datetime.date(2002, 3, 11)
