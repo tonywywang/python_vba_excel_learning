@@ -1,4 +1,5 @@
 from collections import *
+import builtins
 baseline = {'music': 'bach', 'art': 'rembrandt'}
 adjustments = {'art': 'van gogh', 'opera': 'carmen'}
 print(list(ChainMap(adjustments, baseline)))
@@ -6,3 +7,7 @@ print(list(ChainMap(adjustments, baseline)))
 combined = baseline.copy()
 combined.update(adjustments)
 print(list(combined))
+
+pylookup = ChainMap(locals(), globals(), vars(builtins))
+print(list(pylookup))
+print(pylookup['__name__'])  #__main__
