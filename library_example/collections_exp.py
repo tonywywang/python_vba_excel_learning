@@ -74,3 +74,5 @@ Counter(words).most_common(10)
  ('return', 51),
  ('target', 46)]
 '''
+Counter(words).most_common()[:-5-1:-1]   # 5 least common words
+# [('mt7623', 1), ('std', 1), ('namespace', 1), ('using', 1), ('378d81b', 1)]
