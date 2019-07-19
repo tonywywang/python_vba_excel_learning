@@ -58,7 +58,11 @@ cnt = Counter()
 for word in ['red', 'blue', 'red', 'green', 'blue', 'blue']:
     cnt[word] += 1
 print(cnt)
+print(sorted(cnt.elements()))
+print(cnt.values())
 # Counter({'blue': 3, 'red': 2, 'green': 1})
+# ['blue', 'blue', 'blue', 'green', 'red', 'red']
+# dict_values([2, 3, 1])
 
 words = re.findall(r'\w+', open('IPQ40xx-sflash-devreg.patch').read().lower())
 Counter(words).most_common(10)
