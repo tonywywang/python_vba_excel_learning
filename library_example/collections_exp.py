@@ -60,6 +60,8 @@ for word in ['red', 'blue', 'red', 'green', 'blue', 'blue']:
 print(cnt)
 print(sorted(cnt.elements()))
 print(cnt.values())
+subcnt = Counter({'blue':1, 'red':1, 'green':1})
+print(cnt - subcnt)  # Counter({'blue': 2, 'red': 1})
 # Counter({'blue': 3, 'red': 2, 'green': 1})
 # ['blue', 'blue', 'blue', 'green', 'red', 'red']
 # dict_values([2, 3, 1])
