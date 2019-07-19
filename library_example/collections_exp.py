@@ -89,3 +89,17 @@ print(c + d)                       # add two counters together:  c[x] + d[x]    
 print(c - d)                       # subtract (keeping only positive counts)         Counter({'a': 2})
 print(c & d)                       # intersection:  min(c[x], d[x])                  Counter({'a': 1, 'b': 1})
 print(c | d)                       # union:  max(c[x], d[x])                         Counter({'a': 3, 'b': 2})
+
+dq = deque('ghi')
+for element in dq:
+    print(element)
+# g
+# h
+# i
+
+dq = deque(cnt)
+for element in dq:
+    print(element)
+# red
+# blue
+# green
