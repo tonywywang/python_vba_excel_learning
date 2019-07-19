@@ -82,3 +82,10 @@ Counter(words).most_common(10)
 '''
 Counter(words).most_common()[:-5-1:-1]   # 5 least common words
 # [('mt7623', 1), ('std', 1), ('namespace', 1), ('using', 1), ('378d81b', 1)]
+
+c = Counter(a=3, b=1)
+d = Counter(a=1, b=2)
+print(c + d)                       # add two counters together:  c[x] + d[x]         Counter({'a': 4, 'b': 3})
+print(c - d)                       # subtract (keeping only positive counts)         Counter({'a': 2})
+print(c & d)                       # intersection:  min(c[x], d[x])                  Counter({'a': 1, 'b': 1})
+print(c | d)                       # union:  max(c[x], d[x])                         Counter({'a': 3, 'b': 2})
