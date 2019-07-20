@@ -91,6 +91,10 @@ print(c & d)                       # intersection:  min(c[x], d[x])             
 print(c | d)                       # union:  max(c[x], d[x])                         Counter({'a': 3, 'b': 2})
 
 dq = deque('ghi')
+dq.append('j')                     # append from the right side
+dq.appendleft('f')                 # append from the left side
+dq.pop()                           # pop one element from the right side
+dq.popleft()                       # pop one element from the left side
 for element in dq:
     print(element)
 # g
