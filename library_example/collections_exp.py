@@ -100,6 +100,11 @@ for element in dq:
 # g
 # h
 # i
+# dq type is still deque
+dq.rotate(1)                      # right rotation
+# deque(['a', 'g', 'h', 'i'])
+dq.rotate(-1)                     # left rotation
+# deque(['g', 'h', 'i', 'a'])
 
 dq = deque(cnt)
 for element in dq:
