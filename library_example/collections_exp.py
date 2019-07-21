@@ -121,3 +121,22 @@ def tail(filename, lastnlines):
 f_dq = tail('IPQ40xx-sflash-devreg.patch', 5)
 for line in f_dq:
     print(line)
+
+import itertools
+
+def moving_average(iterable, n):
+    it = iter(iterable)
+    d = deque(itertools.islice(it, n-1))
+    for i in it:
+        print(i)    # 50, 46, 39, 44
+    d.appendleft(0)
+    s = sum(d)
+    for i in it:
+        s += i - d.popleft()
+        d.append(i)
+        yield s / n
+
+iterable = [40, 30, 50, 46, 39, 44]
+for i in moving_average(iterable, 3):
+    print(i)
+# 40.0 42.0 45.0 43.0
