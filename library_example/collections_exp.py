@@ -112,3 +112,12 @@ for element in dq:
 # red
 # blue
 # green
+
+# return last n lines of a file
+def tail(filename, lastnlines):
+    with open(filename) as f:
+        return deque(f, lastnlines)
+    
+f_dq = tail('IPQ40xx-sflash-devreg.patch', 5)
+for line in f_dq:
+    print(line)
