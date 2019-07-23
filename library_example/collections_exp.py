@@ -140,3 +140,22 @@ iterable = [40, 30, 50, 46, 39, 44]
 for i in moving_average(iterable, 3):
     print(i)
 # 40.0 42.0 45.0 43.0
+
+s = {'yellow':1, 'blue':2, 'yellow':3, 'blue':4, 'red':1}
+for k, v in s.items():
+    print(k,v)
+s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+d = defaultdict(list)
+for k, v in s:
+    print(k,v)
+    d[k].append(v)
+print(s)
+# yellow 3
+# blue 4
+# red 1
+# yellow 1
+# blue 2
+# yellow 3
+# blue 4
+# red 1
+# [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
