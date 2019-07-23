@@ -159,3 +159,10 @@ print(s)
 # blue 4
 # red 1
 # [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+
+s = 'mississippi'
+d = defaultdict(int) # set default_factory to int is easy for counting
+for k in s:
+    d[k] += 1
+print(d)
+# defaultdict(<class 'int'>, {'m': 1, 'i': 4, 's': 4, 'p': 2})
