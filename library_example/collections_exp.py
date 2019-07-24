@@ -149,7 +149,7 @@ d = defaultdict(list)
 for k, v in s:
     print(k,v)
     d[k].append(v)
-print(s)
+print(d)
 # yellow 3
 # blue 4
 # red 1
@@ -158,7 +158,22 @@ print(s)
 # yellow 3
 # blue 4
 # red 1
-# [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+# defaultdict(<class 'list'>, {'yellow': [1, 3], 'blue': [2, 4], 'red': [1]})
+for element in d:
+	print(element)
+# yellow
+# blue
+# red
+for element in d:
+	print(d[element])
+# [1, 3]
+# [2, 4]
+# [1]
+for element in d:
+	print(d[element][0])
+# 1
+# 2
+# 1
 
 s = 'mississippi'
 d = defaultdict(int) # set default_factory to int is easy for counting
