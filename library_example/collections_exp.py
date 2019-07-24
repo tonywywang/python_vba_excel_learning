@@ -181,3 +181,18 @@ for k in s:
     d[k] += 1
 print(d)
 # defaultdict(<class 'int'>, {'m': 1, 'i': 4, 's': 4, 'p': 2})
+
+'''
+import csv
+EmployeeRecord = namedtuple('EmployeeRecord', 'name, age, title, department')
+
+for emp in map(EmployeeRecord._make, csv.reader(open("test_namedtuple.csv", "r"))):
+    print(emp.name, emp.title)
+
+import sqlite3
+conn = sqlite3.connect('/companydata')
+cursor = conn.cursor()
+cursor.execute('SELECT name, age, title, department, paygrade FROM employees')
+for emp in map(EmployeeRecord._make, cursor.fetchall()):
+    print(emp.name, emp.title)
+'''
