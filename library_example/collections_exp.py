@@ -202,3 +202,5 @@ p.x, p.y                                 # (11, 12)
 x, y = p                                 # unpack the namedtuple
 x, y                                     # (11, 12)
 p                                        # Point(x=11, y=22)
+t = [110, -230]
+Point._make(t)
