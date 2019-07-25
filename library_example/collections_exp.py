@@ -196,3 +196,9 @@ cursor.execute('SELECT name, age, title, department, paygrade FROM employees')
 for emp in map(EmployeeRecord._make, cursor.fetchall()):
     print(emp.name, emp.title)
 '''
+Point = namedtuple('Point', ['x', 'y'])  # Declare one type of namedtuple
+p = Point(11, y=22)                      # Instantiate with key
+p.x, p.y                                 # (11, 12)
+x, y = p                                 # unpack the namedtuple
+x, y                                     # (11, 12)
+p                                        # Point(x=11, y=22)
