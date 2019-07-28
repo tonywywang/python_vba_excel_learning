@@ -204,3 +204,7 @@ x, y                                     # (11, 12)
 p                                        # Point(x=11, y=22)
 t = [110, -230]
 Point._make(t)
+
+p = Point(x=33, y=22)
+print(p._asdict())
+# OrderedDict([('x', 33), ('y', 22)]) new inserted key will be always put at the end
