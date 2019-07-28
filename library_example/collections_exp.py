@@ -208,3 +208,9 @@ Point._make(t)
 p = Point(x=33, y=22)
 print(p._asdict())
 # OrderedDict([('x', 33), ('y', 22)]) new inserted key will be always put at the end
+
+d = OrderedDict.fromkeys('abcde')
+d.move_to_end('b')  # 'acdeb'
+''.join(d.keys())
+d.move_to_end('b', last=False) # 'bacde'
+''.join(d.keys())
