@@ -214,3 +214,11 @@ d.move_to_end('b')  # 'acdeb'
 ''.join(d.keys())
 d.move_to_end('b', last=False) # 'bacde'
 ''.join(d.keys())
+
+from heapq import *
+def heap_sort(iterable):
+    h = []
+    for value in iterable:
+        heappush(h, value)
+    return [heappop(h) for i in range(len(h))]
+heap_sort([1,5,4,7,8,2,3,6,0,9])
