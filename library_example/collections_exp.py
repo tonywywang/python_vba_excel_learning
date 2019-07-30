@@ -222,3 +222,12 @@ def heap_sort(iterable):
         heappush(h, value)
     return [heappop(h) for i in range(len(h))]
 heap_sort([1,5,4,7,8,2,3,6,0,9])
+
+h = []
+heappush(h, 10)
+heappush(h, 7)
+heappush(h, 55)
+heappush(h, -3)
+heappush(h, 100)
+heappushpop(h, 31)  # -3
+heappushpop(h, 57)  # 7
