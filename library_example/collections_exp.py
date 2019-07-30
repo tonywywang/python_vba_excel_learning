@@ -231,3 +231,7 @@ heappush(h, -3)
 heappush(h, 100)
 heappushpop(h, 31)  # -3
 heappushpop(h, 57)  # 7
+
+l = [3, -3, 68, 101, 99, 8]
+heapify(l)  # make a list to heap
+heappop(l)  # without the step above it return 3. Now it returns -3
