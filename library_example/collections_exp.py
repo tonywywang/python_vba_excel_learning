@@ -235,3 +235,4 @@ heappushpop(h, 57)  # 7
 l = [3, -3, 68, 101, 99, 8]
 heapify(l)  # make a list to heap
 heappop(l)  # without the step above it return 3. Now it returns -3
+heapreplace(l, 1000) # push 1000 and return -3 the smallest num 
