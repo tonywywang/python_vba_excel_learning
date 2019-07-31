@@ -235,4 +235,8 @@ heappushpop(h, 57)  # 7
 l = [3, -3, 68, 101, 99, 8]
 heapify(l)  # make a list to heap
 heappop(l)  # without the step above it return 3. Now it returns -3
-heapreplace(l, 1000) # push 1000 and return -3 the smallest num 
+heapreplace(l, 1000) # push 1000 and return -3 the smallest num
+
+h = merge([3, 55, 77], [2, 86])
+for i in h:
+    print(i)  # 2, 3, 55, 77, 86 
