@@ -239,4 +239,17 @@ heapreplace(l, 1000) # push 1000 and return -3 the smallest num
 
 h = merge([3, 55, 77], [2, 86])
 for i in h:
-    print(i)  # 2, 3, 55, 77, 86 
+    print(i)  # 2, 3, 55, 77, 86
+
+portfolio = [
+   {'name': 'IBM', 'shares': 100, 'price': 91.1},
+   {'name': 'AAPL', 'shares': 50, 'price': 543.22},
+   {'name': 'FB', 'shares': 200, 'price': 21.09},
+   {'name': 'HPQ', 'shares': 35, 'price': 31.75},
+   {'name': 'YHOO', 'shares': 45, 'price': 16.35},
+   {'name': 'ACME', 'shares': 75, 'price': 115.65}
+]
+cheap = nsmallest(3, portfolio, key=lambda s: s['price'])
+print(cheap)
+expensive = nlargest(3, portfolio, key=lambda s: s['price'])
+print(expensive) 
