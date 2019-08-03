@@ -15,3 +15,16 @@ def grade(score, breakpoints=[60, 70, 80, 90], grades='FDCBA'):
 
 [grade(score) for score in [33, 99, 77, 70, 89, 90, 100]]
 # ['F', 'A', 'C', 'C', 'B', 'A', 'A']
+
+data = [('red', 5), ('blue', 1), ('yellow', 8), ('black', 0)]
+data.sort(key=lambda r: r[1])
+keys = [r[1] for r in data]
+data[bisect_left(keys, 0)] # ('black', 0)
+data[bisect_left(keys, 1)] # ('blue', 1)
+data[bisect_left(keys, 2)] # ('red', 5)
+data[bisect_left(keys, 3)] # ('red', 5)
+data[bisect_left(keys, 4)] # ('red', 5)
+data[bisect_left(keys, 5)] # ('red', 5)
+data[bisect_left(keys, 6)] # ('yellow', 8)
+data[bisect_left(keys, 7)] # ('yellow', 8)
+data[bisect_left(keys, 8)] # ('yellow', 8)
