@@ -17,3 +17,8 @@ with open("test.txt", 'rb') as f:  # the file must be read from 'b' mode
     a2.fromfile(f, 4)
 print(a2)
 # array('B', [1, 2, 3, 4])
+
+a3 = array('B', [])
+a3.extend([20, 21, 22, 23])
+with open("test.txt", 'wb') as f:
+    a3.tofile(f)
