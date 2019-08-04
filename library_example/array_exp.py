@@ -10,3 +10,10 @@ print(a1) # array('d', [1.0, 2.3, 3.14, -4.59])
 # data from a file written on a machine with a different byte order.
 a1.byteswap() 
 print(a1) # array('d', [3.03865e-319, 1.9035985662475526e+185, 7.9824696849641e-157, 7.387368604390227e+137])
+
+a2 = array('B', [])
+# the test.txt should be edited in hex mode
+with open("test.txt", 'rb') as f:  # the file must be read from 'b' mode
+    a2.fromfile(f, 4)
+print(a2)
+# array('B', [1, 2, 3, 4])
