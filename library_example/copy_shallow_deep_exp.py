@@ -20,3 +20,5 @@ print(id(a3))
 #2025441865032
 #[1, 2, 3, 55, [10000, 1000], 7]
 #2025441044296
+# a good illustration for shallow/deep copy
+# https://www.python-course.eu/python3_deep_copy.php
