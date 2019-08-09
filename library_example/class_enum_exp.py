@@ -25,3 +25,25 @@ Colour.GREEN
 <Colour.RED: 4>
 Colour.YELLOW
 '''
+
+class Mood(Enum):
+    HAPPY = 1
+    ANGRY = 2
+    
+    def describe(self):
+        return self.name, self.value
+    def __str__(self):
+        return 'my custom str! {0}'.format(self.value)
+    @classmethod
+    def favorite_mood(cls):
+        # cls here is the enumeration
+        return cls.HAPPY
+
+print(Mood.favorite_mood())
+print(Mood.HAPPY.describe())
+str(Mood.ANGRY)
+'''
+my custom str! 1
+('HAPPY', 1)
+'my custom str! 2'
+'''
