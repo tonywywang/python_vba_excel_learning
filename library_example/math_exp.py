@@ -15,3 +15,8 @@ print(fmod(10.4, 3))
 # 1.4000000000000004
 print(frexp(2.3)) # return (m,  e) val = m*2**e
 # (0.575, 2)
+
+print(fmod(-1e-100, 1e100))
+print(-1e-100 % 1e100)
+# -1e-100
+# 1e+100
