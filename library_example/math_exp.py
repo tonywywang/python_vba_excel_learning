@@ -10,3 +10,8 @@ print(copysign(-3.0, 0.0))
 # 3.0
 print(floor(3.00001))
 3
+
+print(fmod(10.4, 3))
+# 1.4000000000000004
+print(frexp(2.3)) # return (m,  e) val = m*2**e
+# (0.575, 2)
