@@ -64,3 +64,24 @@ with open("curl_post_resp.txt", 'wb') as f:
     c.setopt(c.WRITEDATA, f)
     c.perform()
     c.close()
+'''
+POST response:
+{
+  "args": {}, 
+  "data": "", 
+  "files": {}, 
+  "form": {
+    "field": "value"
+  }, 
+  "headers": {
+    "Accept": "*/*", 
+    "Content-Length": "11", 
+    "Content-Type": "application/x-www-form-urlencoded", 
+    "Host": "httpbin.org", 
+    "User-Agent": "PycURL/7.43.0.3 libcurl/7.64.1 OpenSSL/1.1.1c zlib/1.2.11 c-ares/1.15.0 libssh2/1.8.2"
+  }, 
+  "json": null, 
+  "origin": "198.52.175.143, 198.52.175.143", 
+  "url": "https://httpbin.org/post"
+}
+'''
