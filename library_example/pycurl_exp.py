@@ -85,3 +85,21 @@ POST response:
   "url": "https://httpbin.org/post"
 }
 '''
+
+# upload file with http post
+import pycurl
+import certifi
+
+c = pycurl.Curl()
+c.setopt(pycurl.CAINFO, certifi.where())
+c.setopt(c.URL, 'https://httpbin.org/post')
+
+c.setopt(c.HTTPPOST, [
+    ('fileupload', (
+        # upload the contents of this file
+        c.FORM_FILE, "curl_post_resp.txt",
+    )),
+])
+
+c.perform()
+c.close()
