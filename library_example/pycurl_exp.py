@@ -103,3 +103,40 @@ c.setopt(c.HTTPPOST, [
 
 c.perform()
 c.close()
+
+import pycurl
+import certifi
+
+c = pycurl.Curl()
+c.setopt(pycurl.CAINFO, certifi.where())
+c.setopt(c.URL, 'https://httpbin.org/post')
+
+c.setopt(c.HTTPPOST, [
+    ('fileupload', (
+        c.FORM_BUFFER, 'readme.txt',
+        c.FORM_BUFFERPTR, 'This is a fancy readme file',
+    )),
+])
+
+c.perform()
+c.close()
+'''
+{
+  "args": {},
+  "data": "",
+  "files": {
+    "fileupload": "This is a fancy readme file"
+  },
+  "form": {},
+  "headers": {
+    "Accept": "*/*",
+    "Content-Length": "221",
+    "Content-Type": "multipart/form-data; boundary=------------------------bfb90951cb95a414",
+    "Host": "httpbin.org",
+    "User-Agent": "PycURL/7.43.0.3 libcurl/7.64.1 OpenSSL/1.1.1c zlib/1.2.11 c-ares/1.15.0 libssh2/1.8.2"
+  },
+  "json": null,
+  "origin": "198.52.175.143, 198.52.175.143",
+  "url": "https://httpbin.org/post"
+}
+'''
