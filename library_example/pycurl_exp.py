@@ -155,3 +155,24 @@ c.setopt(c.URL, "http://slashdot.org/")
 c.setopt(c.NOPROGRESS, False)
 c.setopt(c.XFERINFOFUNCTION, progress)
 c.perform()
+
+import pycurl
+import certifi
+try:
+    from io import BytesIO
+except ImportError:
+    from StringIO import StringIO as BytesIO
+
+c = pycurl.Curl()
+c.setopt(pycurl.CAINFO, certifi.where())
+c.setopt(c.URL, 'https://httpbin.org/put')
+
+c.setopt(c.UPLOAD, 1)
+data = '{"json":true}'
+# READDATA requires an IO-like object; a string is not accepted
+# encode() is necessary for Python 3
+buffer = BytesIO(data.encode('utf-8'))
+c.setopt(c.READDATA, buffer)
+
+c.perform()
+c.close()
