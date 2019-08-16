@@ -176,3 +176,24 @@ c.setopt(c.READDATA, buffer)
 
 c.perform()
 c.close()
+
+'''
+upload output:
+{
+  "args": {},
+  "data": "{\"json\":true}",
+  "files": {},
+  "form": {},
+  "headers": {
+    "Accept": "*/*",
+    "Content-Length": "13",
+    "Host": "httpbin.org",
+    "User-Agent": "PycURL/7.43.0.3 libcurl/7.64.1 OpenSSL/1.1.1c zlib/1.2.11 c-ares/1.15.0 libssh2/1.8.2"
+  },
+  "json": {
+    "json": true
+  },
+  "origin": "198.52.175.143, 198.52.175.143",
+  "url": "https://httpbin.org/put"
+}
+'''
