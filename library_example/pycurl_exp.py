@@ -197,3 +197,17 @@ upload output:
   "url": "https://httpbin.org/put"
 }
 '''
+
+import pycurl
+
+## Callback function invoked when header data is ready
+def header(buf):
+    # Print header data to stderr
+    import sys
+    sys.stderr.write(buf)
+    # Returning None implies that all bytes were written
+
+c = pycurl.Curl()
+c.setopt(pycurl.URL, "http://www.python.org/")
+c.setopt(pycurl.HEADERFUNCTION, header)
+c.perform()
