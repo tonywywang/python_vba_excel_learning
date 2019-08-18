@@ -223,10 +223,13 @@ c.perform()
 import pycurl
 import sys
 
-c = pycurl.Curl()
-c.setopt(pycurl.URL, "https://curl.haxx.se")
+c1 = pycurl.Curl()
+c1.setopt(pycurl.URL, "https://curl.haxx.se")
+c2 = pycurl.Curl()
+c2.setopt(pycurl.URL, "https://www.microsoft.com")
 m = pycurl.CurlMulti()
-m.add_handle(c)
+m.add_handle(c1)
+m.add_handle(c2)
 while 1:
     ret, num_handles = m.perform()
     if ret != pycurl.E_CALL_MULTI_PERFORM: break
