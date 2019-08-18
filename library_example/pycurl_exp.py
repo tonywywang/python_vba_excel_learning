@@ -219,3 +219,20 @@ c.setopt(pycurl.URL, "http://www.python.org/")
 c.setopt(pycurl.WRITEFUNCTION, body)
 c.setopt(pycurl.HEADERFUNCTION, header)
 c.perform()
+
+import pycurl
+import sys
+
+c = pycurl.Curl()
+c.setopt(pycurl.URL, "https://curl.haxx.se")
+m = pycurl.CurlMulti()
+m.add_handle(c)
+while 1:
+    ret, num_handles = m.perform()
+    if ret != pycurl.E_CALL_MULTI_PERFORM: break
+while num_handles:
+    ret = m.select(1.0)
+    if ret == -1:  continue
+    while 1:
+        ret, num_handles = m.perform()
+        if ret != pycurl.E_CALL_MULTI_PERFORM: break
