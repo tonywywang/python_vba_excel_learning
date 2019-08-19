@@ -235,7 +235,7 @@ while 1:
     if ret != pycurl.E_CALL_MULTI_PERFORM: break
 while num_handles:
     ret = m.select(1.0)
-    if ret == -1:  continue
+    if ret == -1:  continue   # if ret == -1 true meaning select timeout
     while 1:
         ret, num_handles = m.perform()
         if ret != pycurl.E_CALL_MULTI_PERFORM: break
