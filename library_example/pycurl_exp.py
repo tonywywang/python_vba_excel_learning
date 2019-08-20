@@ -239,3 +239,16 @@ while num_handles:
     while 1:
         ret, num_handles = m.perform()
         if ret != pycurl.E_CALL_MULTI_PERFORM: break
+
+import pycurl
+import certifi
+from io import BytesIO
+
+buffer = BytesIO()
+c = pycurl.Curl()
+c.setopt(pycurl.URL, "https://example.com")
+c.setopt(pycurl.CAINFO, certifi.where())
+c.setopt(pycurl.WRITEDATA, buffer)
+c.perform()
+c.close()
+print(buffer.getvalue())
