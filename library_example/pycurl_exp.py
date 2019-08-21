@@ -304,3 +304,40 @@ print(buffer.getvalue())
 </body>
 </html>
 '''
+
+import pycurl,urllib
+from io import BytesIO
+ 
+url = 'http://www.baidu.com'
+ 
+headers = [
+    "User-Agent:Mozilla/5.0 (iPhone; CPU iPhone OS 5_0 like Mac OS X) AppleWebKit/534.46 (KHTML, like Gecko) Version/5.1 Mobile/9A334 Safari/7534.48.3",
+]
+ 
+data = {
+    "cityListName":"",
+    "trade": ""
+}
+ 
+c = pycurl.Curl()  #通过curl方法构造一个对象
+#c.setopt(pycurl.REFERER, 'http://www.baidu.com/') #设置referer
+c.setopt(pycurl.FOLLOWLOCATION, True) #自动进行跳转抓取
+c.setopt(pycurl.MAXREDIRS,5)          #设置最多跳转多少次
+c.setopt(pycurl.CONNECTTIMEOUT, 60)   #设置链接超时
+c.setopt(pycurl.TIMEOUT,120)          #下载超时
+c.setopt(pycurl.ENCODING, 'gzip,deflate') #处理gzip内容
+# c.setopt(c.PROXY,ip) # 代理
+c.fp = BytesIO()
+c.setopt(pycurl.URL, url)   #设置要访问的URL
+c.setopt(pycurl.HTTPHEADER,headers)   #传入请求头
+c.setopt(pycurl.POST, 1)
+c.setopt(pycurl.POSTFIELDS, urllib.parse.urlencode(data)) #传入POST数据
+c.setopt(c.WRITEFUNCTION, c.fp.write) #回调写入字符串缓存
+c.perform()
+ 
+code = c.getinfo(c.HTTP_CODE) #返回状态码
+html = c.fp.getvalue() #返回源代码
+
+print(code)
+print(html)
+print(c.getinfo(c.TOTAL_TIME))
