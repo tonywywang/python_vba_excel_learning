@@ -341,3 +341,11 @@ html = c.fp.getvalue() #返回源代码
 print(code)
 print(html)
 print(c.getinfo(c.TOTAL_TIME))
+
+import pycurl
+
+c = pycurl.Curl()
+c.setopt(pycurl.URL, "http://example.com/foo.bin")
+c.setopt(pycurl.COOKIEJAR, "cookies.txt")  # write the cookie back when the handle is closed
+c.perform()
+c.close()
