@@ -357,7 +357,10 @@ curl 'http://*******/login/' -c '/tmp/300' #生成cookie文件
 curl -d 'a=b&c=d' 'http://******/ajax/know/' -b '/tmp/300' #利用cookie访问
 '''
 import pycurl
-import StringIO
+try:
+    from StringIO import StringIO
+except ImportError:
+    from io import StringIO
 import json
 import sys
 def initCurl():
