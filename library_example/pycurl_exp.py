@@ -349,3 +349,48 @@ c.setopt(pycurl.URL, "http://example.com/foo.bin")
 c.setopt(pycurl.COOKIEJAR, "cookies.txt")  # write the cookie back when the handle is closed
 c.perform()
 c.close()
+
+#! -*- coding:utf-8 -*-
+'''
+模拟登录
+curl 'http://*******/login/' -c '/tmp/300' #生成cookie文件
+curl -d 'a=b&c=d' 'http://******/ajax/know/' -b '/tmp/300' #利用cookie访问
+'''
+import pycurl
+import StringIO
+import json
+import sys
+def initCurl():
+        c = pycurl.Curl()
+        c.setopt(pycurl.COOKIEFILE, "cookie_file_name")#把cookie保存在该文件中
+        c.setopt(pycurl.COOKIEJAR, "cookie_file_name")
+        c.setopt(pycurl.FOLLOWLOCATION, 1) #允许跟踪来源
+        c.setopt(pycurl.MAXREDIRS, 5)
+        return c
+
+def GetDate(curl, url):
+        head = ['Accept:*/*',
+                'User-Agent:Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11']
+        buf = StringIO.StringIO()
+        curl.setopt(pycurl.WRITEFUNCTION, buf.write)
+        curl.setopt(pycurl.URL, url)
+        curl.setopt(pycurl.HTTPHEADER,  head)
+        curl.perform()
+        the_page =buf.getvalue()
+        buf.close()
+        return the_page
+def PostData(curl, url, data):
+    head = ['Accept:*/*',
+            'User-Agent:Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.97 Safari/537.11']
+    buf = StringIO.StringIO()
+    curl.setopt(pycurl.WRITEFUNCTION, buf.write)
+    curl.setopt(pycurl.POSTFIELDS,  data)
+    curl.setopt(pycurl.URL, url)
+    curl.setopt(pycurl.HTTPHEADER,  head)
+    curl.perform()
+    the_page = buf.getvalue()
+    buf.close()
+    return the_page
+GetDate(initCurl(),'http://********/login')
+p=PostData(initCurl(), 'http://********/post', 'a=b&c=d')
+print p
