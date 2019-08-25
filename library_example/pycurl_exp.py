@@ -442,3 +442,52 @@ m.close()
 c1.close()
 c2.close()
 c3.close()
+
+def test_multi_select_fdset(self):
+        c1 = util.DefaultCurl()
+        c2 = util.DefaultCurl()
+        c3 = util.DefaultCurl()
+        c1.setopt(c1.URL, "http://%s:8380/success" % localhost)
+        c2.setopt(c2.URL, "http://%s:8381/success" % localhost)
+        c3.setopt(c3.URL, "http://%s:8382/success" % localhost)
+        c1.body = util.BytesIO()
+        c2.body = util.BytesIO()
+        c3.body = util.BytesIO()
+        c1.setopt(c1.WRITEFUNCTION, c1.body.write)
+        c2.setopt(c2.WRITEFUNCTION, c2.body.write)
+        c3.setopt(c3.WRITEFUNCTION, c3.body.write)
+
+        m = pycurl.CurlMulti()
+        m.add_handle(c1)
+        m.add_handle(c2)
+        m.add_handle(c3)
+
+        # Number of seconds to wait for a timeout to happen
+        SELECT_TIMEOUT = 0.1
+
+        # Stir the state machine into action
+        while 1:
+            ret, num_handles = m.perform()
+            if ret != pycurl.E_CALL_MULTI_PERFORM:
+                break
+
+        # Keep going until all the connections have terminated
+        while num_handles:
+            select.select(*m.fdset() + (SELECT_TIMEOUT,))
+            while 1:
+                ret, num_handles = m.perform()
+                if ret != pycurl.E_CALL_MULTI_PERFORM:
+                    break
+
+        # Cleanup
+        m.remove_handle(c3)
+        m.remove_handle(c2)
+        m.remove_handle(c1)
+        m.close()
+        c1.close()
+        c2.close()
+        c3.close()
+
+        self.assertEqual('success', c1.body.getvalue().decode())
+        self.assertEqual('success', c2.body.getvalue().decode())
+        self.assertEqual('success', c3.body.getvalue().decode())
