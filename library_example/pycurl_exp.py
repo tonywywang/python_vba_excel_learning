@@ -491,3 +491,45 @@ def test_multi_select_fdset(self):
         self.assertEqual('success', c1.body.getvalue().decode())
         self.assertEqual('success', c2.body.getvalue().decode())
         self.assertEqual('success', c3.body.getvalue().decode())
+
+def test_multi_status_codes(self):
+        # init
+        m = pycurl.CurlMulti()
+        m.handles = []
+        urls = [
+            'http://%s:8380/success' % localhost,
+            'http://%s:8381/status/403' % localhost,
+            'http://%s:8382/status/404' % localhost,
+        ]
+        for url in urls:
+            c = util.DefaultCurl()
+            # save info in standard Python attributes
+            c.url = url.rstrip()
+            c.body = util.BytesIO()
+            c.http_code = -1
+            m.handles.append(c)
+            # pycurl API calls
+            c.setopt(c.URL, c.url)
+            c.setopt(c.WRITEFUNCTION, c.body.write)
+            m.add_handle(c)
+
+        # get data
+        num_handles = len(m.handles)
+        while num_handles:
+            while 1:
+                ret, num_handles = m.perform()
+                if ret != pycurl.E_CALL_MULTI_PERFORM:
+                    break
+            # currently no more I/O is pending, could do something in the meantime
+            # (display a progress bar, etc.)
+            m.select(0.1)
+
+        # check result
+        self.assertEqual('success', m.handles[0].body.getvalue().decode())
+        self.assertEqual(200, m.handles[0].http_code)
+        # bottle generated response body
+        self.assertEqual('forbidden', m.handles[1].body.getvalue().decode())
+        self.assertEqual(403, m.handles[1].http_code)
+        # bottle generated response body
+        self.assertEqual('not found', m.handles[2].body.getvalue().decode())
+        self.assertEqual(404, m.handles[2].http_code)
