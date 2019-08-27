@@ -446,7 +446,7 @@ class MultiTest(unittest.TestCase):
         c2.close()
         c3.close()
 
-def test_multi_select_fdset(self):
+    def test_multi_select_fdset(self):
         c1 = util.DefaultCurl()
         c2 = util.DefaultCurl()
         c3 = util.DefaultCurl()
@@ -495,7 +495,7 @@ def test_multi_select_fdset(self):
         self.assertEqual('success', c2.body.getvalue().decode())
         self.assertEqual('success', c3.body.getvalue().decode())
 
-def test_multi_status_codes(self):
+    def test_multi_status_codes(self):
         # init
         m = pycurl.CurlMulti()
         m.handles = []
@@ -536,3 +536,64 @@ def test_multi_status_codes(self):
         # bottle generated response body
         self.assertEqual('not found', m.handles[2].body.getvalue().decode())
         self.assertEqual(404, m.handles[2].http_code)
+
+    def check_adding_closed_handle(self, close_fn):
+        # init
+        m = pycurl.CurlMulti()
+        m.handles = []
+        urls = [
+            'http://%s:8380/success' % localhost,
+            'http://%s:8381/status/403' % localhost,
+            'http://%s:8382/status/404' % localhost,
+        ]
+        for url in urls:
+            c = util.DefaultCurl()
+            # save info in standard Python attributes
+            c.url = url
+            c.body = util.BytesIO()
+            c.http_code = -1
+            c.debug = 0
+            m.handles.append(c)
+            # pycurl API calls
+            c.setopt(c.URL, c.url)
+            c.setopt(c.WRITEFUNCTION, c.body.write)
+            m.add_handle(c)
+
+        # debug - close a handle
+        c = m.handles[2]
+        c.debug = 1
+        c.close()
+
+        # get data
+        num_handles = len(m.handles)
+        while num_handles:
+            while 1:
+                ret, num_handles = m.perform()
+                if ret != pycurl.E_CALL_MULTI_PERFORM:
+                    break
+            # currently no more I/O is pending, could do something in the meantime
+            # (display a progress bar, etc.)
+            m.select(0.1)
+
+        # close handles
+        for c in m.handles:
+            # save info in standard Python attributes
+            try:
+                c.http_code = c.getinfo(c.HTTP_CODE)
+            except pycurl.error:
+                # handle already closed - see debug above
+                assert c.debug
+                c.http_code = -1
+            # pycurl API calls
+            close_fn(m, c)
+        m.close()
+
+        # check result
+        self.assertEqual('success', m.handles[0].body.getvalue().decode())
+        self.assertEqual(200, m.handles[0].http_code)
+        # bottle generated response body
+        self.assertEqual('forbidden', m.handles[1].body.getvalue().decode())
+        self.assertEqual(403, m.handles[1].http_code)
+        # bottle generated response body
+        self.assertEqual('', m.handles[2].body.getvalue().decode())
+        self.assertEqual(-1, m.handles[2].http_code)
