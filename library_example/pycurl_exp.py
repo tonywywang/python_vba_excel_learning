@@ -648,3 +648,69 @@ class MultiTest(unittest.TestCase):
         self.assertEqual('success', c1.body.getvalue().decode())
         self.assertEqual('success', c2.body.getvalue().decode())
         self.assertEqual('success', c3.body.getvalue().decode())
+
+    def test_multi_info_read(self):
+        c1 = util.DefaultCurl()
+        c2 = util.DefaultCurl()
+        c3 = util.DefaultCurl()
+        c1.setopt(c1.URL, "http://%s:8380/short_wait" % localhost)
+        c2.setopt(c2.URL, "http://%s:8381/short_wait" % localhost)
+        c3.setopt(c3.URL, "http://%s:8382/short_wait" % localhost)
+        c1.body = util.BytesIO()
+        c2.body = util.BytesIO()
+        c3.body = util.BytesIO()
+        c1.setopt(c1.WRITEFUNCTION, c1.body.write)
+        c2.setopt(c2.WRITEFUNCTION, c2.body.write)
+        c3.setopt(c3.WRITEFUNCTION, c3.body.write)
+
+        m = pycurl.CurlMulti()
+        m.add_handle(c1)
+        m.add_handle(c2)
+        m.add_handle(c3)
+
+        # Number of seconds to wait for a timeout to happen
+        SELECT_TIMEOUT = 1.0
+
+        # Stir the state machine into action
+        while 1:
+            ret, num_handles = m.perform()
+            if ret != pycurl.E_CALL_MULTI_PERFORM:
+                break
+
+        infos = []
+        # Keep going until all the connections have terminated
+        while num_handles:
+            # The select method uses fdset internally to determine which file descriptors
+            # to check.
+            m.select(SELECT_TIMEOUT)
+            while 1:
+                ret, num_handles = m.perform()
+                info = m.info_read()
+                infos.append(info)
+                if ret != pycurl.E_CALL_MULTI_PERFORM:
+                    break
+
+        all_handles = []
+        for info in infos:
+            handles = info[1]
+            # last info is an empty array
+            if handles:
+                all_handles.extend(handles)
+
+        self.assertEqual(3, len(all_handles))
+        assert c1 in all_handles
+        assert c2 in all_handles
+        assert c3 in all_handles
+
+        # Cleanup
+        m.remove_handle(c3)
+        m.remove_handle(c2)
+        m.remove_handle(c1)
+        m.close()
+        c1.close()
+        c2.close()
+        c3.close()
+
+        self.assertEqual('success', c1.body.getvalue().decode())
+        self.assertEqual('success', c2.body.getvalue().decode())
+        self.assertEqual('success', c3.body.getvalue().decode())
