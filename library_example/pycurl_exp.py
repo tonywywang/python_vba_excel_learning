@@ -714,3 +714,7 @@ class MultiTest(unittest.TestCase):
         self.assertEqual('success', c1.body.getvalue().decode())
         self.assertEqual('success', c2.body.getvalue().decode())
         self.assertEqual('success', c3.body.getvalue().decode())
+
+    def test_multi_close(self):
+        m = pycurl.CurlMulti()
+        m.close()
