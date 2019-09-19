@@ -13,12 +13,16 @@ serversocket.listen(1)
 
 connectiontoclient, address = serversocket.accept()
 request = b''
-while EOL1 not in request and EOL2 not in request:
-    request += connectiontoclient.recv(1024)
-print(request.decode())
-connectiontoclient.send(response)
-connectiontoclient.close()
-
-serversocket.close()
+try:
+    while True:
+        connectiontoclient, address = serversocket.accept()
+        request = b''
+        while EOL1 not in request and EOL2 not in request:
+            request += connectiontoclient.recv(1024)
+        print('-'*40 + '\n' + request.decode()[:-2])
+        connectiontoclient.send(response)
+        connectiontoclient.close()
+finally:
+    serversocket.close()
 
 # to test, open a browser url http://127.0.0.1:8080
