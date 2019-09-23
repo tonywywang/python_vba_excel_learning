@@ -11,6 +11,11 @@ serversocket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 serversocket.bind(('0.0.0.0', 8080))
 serversocket.listen(1)
 serversocket.setblocking(0)
+# On the other hand, the TCP_NODELAY option can be used to tell the 
+# operating system that any data passed to socket.send() should immediately
+# be sent to the client without being buffered by the operating system. 
+# This option, illustrated in line 14 of Example 6, might be a good option 
+# to use for an SSH client or other "real-time" application.
 serversocket.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
 
 epoll = select.epoll()
