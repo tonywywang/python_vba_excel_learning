@@ -58,3 +58,10 @@ finally:
    epoll.unregister(serversocket.fileno())
    epoll.close()
    serversocket.close()
+'''
+Example 4 demonstrates how to use edge-triggered mode. In Example 4, 
+lines 25, 36 and 45 introduce loops that run until an exception occurs 
+(or all data is otherwise known to be handled). Lines 32, 38 and 48 
+catch the expected socket exceptions. Finally, lines 16, 28, 41 and 51 
+add the EPOLLET mask which is used to set edge-triggered mode.
+'''
