@@ -48,3 +48,23 @@ finally:
    epoll.unregister(serversocket.fileno())
    epoll.close()
    serversocket.close()
+'''
+Listen Backlog Queue Size
+In Examples 1-4, line 12 has shown a call to the serversocket.listen() method. 
+The parameter for this method is the listen backlog queue size. It tells the 
+operating system how many TCP/IP connections to accept and place on the backlog 
+queue before they are accepted by the Python program. Each time the Python program 
+calls accept() on the server socket, one of the connections is removed from the 
+queue and that slot can be used for another incoming connection. If the queue is 
+full, new incoming connections are silently ignored causing unnecessary delays 
+on the client side of the network connection. A production server usually handles 
+tens or hundreds of simultaneous connections, so a value of 1 will usually be 
+inadequate. For example, when using ab to perform load testing against these sample 
+programs with 100 concurrent HTTP 1.0 clients, any backlog value less than 50 would 
+often produce performance degradation.
+
+TCP Options
+The TCP_CORK option can be used to "bottle up" messages until they are ready to send.
+This option, illustrated in lines 34 and 40 of Example 5, might be a good option to 
+use for an HTTP server using HTTP/1.1 pipelining.
+'''
