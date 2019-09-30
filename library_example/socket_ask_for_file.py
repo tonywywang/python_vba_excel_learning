@@ -11,9 +11,16 @@ except socket.gaierror as e:
 	print("Error connecting to server %s"  % e)
 	sys.exit(1)
 
-s.sendall("filename + '\r\n'".encode()) #  a bytes-like object is required, not 'str'
+#s.sendall("filename + '\r\n'".encode()) #  a bytes-like object is required, not 'str'
+fd = s.makefile('rwb',0)
+fd.write(filename.encode('utf-8')+"\r\n".encode('utf-8'))
+
+for line in fd.readlines():
+	sys.stdout.write(line.decode('utf-8'))
+'''
 while True:
     buf = s.recv(2048)
     if not len(buf):
         break
     print(buf)
+'''
