@@ -10,6 +10,9 @@ try:
 except socket.gaierror as e:
 	print("Error connecting to server %s"  % e)
 	sys.exit(1)
+except socket.error as e:
+	print("Connection Error %s" % e)
+	sys.exit(1)
 
 #s.sendall("filename + '\r\n'".encode()) #  a bytes-like object is required, not 'str'
 fd = s.makefile('rwb',0)
